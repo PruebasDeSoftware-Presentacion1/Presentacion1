@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ListExercises from '../exercises/ListExercises';
-import './Exercises.css'
+import '../css/Exercises.css'
 
 const items = [
   {

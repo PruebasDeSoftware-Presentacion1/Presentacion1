@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Row, Container, Col, Card, CardBody, CardTitle, CardSubtitle, CardText, Modal, ModalHeader, ModalBody } from 'reactstrap';
-import './ButtonHover.css'
+import '../css/ButtonHover.css'
+import '../css/ListPlans-index.css'
 
 export function ListPlans({ items, onCardClick }) {
     return (
@@ -24,31 +25,32 @@ export function ListPlans({ items, onCardClick }) {
   
   
 
-export function CardModal({ items, selectedItem, toggleModal }) {
-  return (
-    <Modal isOpen={!!selectedItem} toggle={toggleModal} size="lg">
-  <ModalHeader toggle={toggleModal}>{selectedItem?.title}</ModalHeader>
-  <ModalBody>
-    <Container className="mt-2">
-      <Row xs="1" sm="2" md="2">
-        {items.map((item, index) => (
-          <Col key={index} className="mb-3">
-            <Card className="h-100">
-              <CardBody>
-                <CardTitle tag="h2">{item.title}</CardTitle>
-                <CardSubtitle tag="h3">{item.subtitle}</CardSubtitle>
-                <CardText>{item.description}</CardText>
-              </CardBody>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
-  </ModalBody>
-</Modal>
-
-  );
-}
+  export function CardModal({ items, selectedItem, toggleModal }) {
+    return (
+      <Modal isOpen={!!selectedItem} toggle={toggleModal} size="lg">
+        <ModalHeader toggle={toggleModal}>{selectedItem?.title}</ModalHeader>
+        <ModalBody>
+          <Container className="mt-2">
+            <Row xs="1" sm="2" md="2">
+              {items.map((item, index) => (
+                <Col key={index} className="mb-3">
+                  <Card className="h-100">
+                    <CardBody>
+                      <div className="index-label">{index + 1}</div>
+                      <CardTitle tag="h2">{item.title}</CardTitle>
+                      <CardSubtitle tag="h3">{item.subtitle}</CardSubtitle>
+                      <CardText>{item.description}</CardText>
+                    </CardBody>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Container>
+        </ModalBody>
+      </Modal>
+    );
+  }
+  
 
 const ListExercises = ({ items }) => {
   const [selectedItem, setSelectedItem] = useState(null);

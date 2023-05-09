@@ -1,0 +1,14 @@
+.input-narrow {
+    width: calc(100% / 12);
+  }
+
+  .Card {
+    cursor: pointer;
+  }
+  
+  .selected {
+    background-color: #007bff;
+    color: white;
+  }
+
+  
