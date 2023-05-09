@@ -1,0 +1,52 @@
+/* .highlight:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #fff;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.5);
+    transform: rotate(10deg) scale(1.1);
+} */
+
+.highlight:hover {
+    background-color: #45ccc1;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .highlight:hover .CardTitle {
+    color: #ff5733;
+    font-size: 24px;
+    text-shadow: 1px 1px 5px rgba(255, 87, 51, 0.5);
+  }
+  
+  .highlight:hover .CardSubtitle {
+    color: #555555;
+    font-size: 18px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .highlight:hover .CardText {
+    color: #777777;
+    font-size: 16px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .highlight:hover .CardButton {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .highlight:hover .CardButton:hover {
+    background-color: white;
+    color: #ff5733;
+    box-shadow: 0px 0px 10px rgba(255, 87, 51, 0.5);
+  }
+  

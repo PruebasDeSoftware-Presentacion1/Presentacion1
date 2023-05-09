@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import List from '../exercises/List';
+import ListExercises from '../exercises/ListExercises';
 import './Exercises.css'
 
 const items = [
@@ -102,7 +102,7 @@ function ExerciseSearch({ onSearch }) {
       <br></br>
       <h2 className="exercise-title">Ejercicios disponibles en el Gimnasio</h2>
       <ExerciseSearch onSearch={handleSearch} />
-        <List items={filteredItems} />
+        <ListExercises items={filteredItems} />
       
     </div>
   );
