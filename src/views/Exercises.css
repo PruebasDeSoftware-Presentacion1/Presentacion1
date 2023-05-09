@@ -1,0 +1,44 @@
+.ExerciseSearch-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  padding: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  border: none;
+  outline: none;
+  font-size: 16px;
+  width: 300px;
+  margin: 0 auto;
+}
+
+.ExerciseSearch-bar {
+  border: none;
+  width: 300px;
+}
+
+.ExerciseSearch-container input:focus{
+  outline: none;
+}
+
+
+.exercise-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .exercise-title {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  
+  
+  @media screen and (min-width: 768px) {
+    .exercise-list-container {
+      max-width: 768px;
+    }
+  }
+  
