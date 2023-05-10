@@ -8,7 +8,8 @@
   
   .selected {
     background-color: #007bff;
-    color: white;
+    color: #007bff;
+    box-shadow: 0 4px 8px rgba(161, 33, 33, 0.753);
   }
-
+  
   
