@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ListExercises from '../exercises/ListExercises';
 import '../css/Exercises.css'
+import { handleSearch } from '../functions/handleSearch';
 
 const items = [
   {
@@ -90,18 +91,18 @@ function ExerciseSearch({ onSearch }) {
     const [, setSearchTerm] = useState('');
     const [filteredItems, setFilteredItems] = useState(items);
   
-    const handleSearch = (searchTerm) => {
+    const handleSearchWrapper = (searchTerm) => {
       setSearchTerm(searchTerm);
-      const newFilteredItems = searchTerm.trim() === '' ? items : items.filter((item) =>
-        item.title.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const newFilteredItems = handleSearch(searchTerm, items); // utiliza la función importada
       setFilteredItems(newFilteredItems);
+      console.log(newFilteredItems);
     };
+
   return (
     <div className="exercise-container">
       <br></br>
       <h2 className="exercise-title">Ejercicios disponibles en el Gimnasio</h2>
-      <ExerciseSearch onSearch={handleSearch} />
+      <ExerciseSearch onSearch={handleSearchWrapper} />
         <ListExercises items={filteredItems} />
       
     </div>

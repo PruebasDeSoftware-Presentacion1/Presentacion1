@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import DailyWorkoutForm from '../components/DailyWorkoutForm';
 import { Row, Container, Col, Card, CardBody, CardTitle } from 'reactstrap';
 import '../css/DailyWorkOut.css'
+import { handleDeleteSavedWorkout } from '../functions/handleDelete';
 
 const DailyWorkout = () => {
   const availableExercises = ['Push-ups', 'Sit-ups', 'Squats', 'Lunges', 'Pull-ups'];
@@ -48,8 +49,8 @@ const DailyWorkout = () => {
     setWorkout([]);
   };
 
-  const handleDeleteSavedWorkout = (index) => {
-    const newSavedWorkouts = savedWorkouts.filter((_, i) => i !== index);
+  const handleDeleteSavedWorkoutWrapper = (index) => {
+    const newSavedWorkouts = handleDeleteSavedWorkout(savedWorkouts, index);
     setSavedWorkouts(newSavedWorkouts);
   };
 
@@ -161,7 +162,7 @@ const DailyWorkout = () => {
         <div className="saved-workout-buttons">
         <button
             type="button"
-            onClick={() => handleDeleteSavedWorkout(index)}
+            onClick={() => handleDeleteSavedWorkoutWrapper(index)}
             className="btn btn-danger btn-sm me-2"
           >
             Eliminar
