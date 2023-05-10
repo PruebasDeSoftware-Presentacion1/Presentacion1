@@ -5,10 +5,19 @@ import '../css/DailyWorkOut.css'
 import { handleDeleteSavedWorkout } from '../functions/handleDelete';
 
 const DailyWorkout = () => {
-  const availableExercises = ['Push-ups', 'Sit-ups', 'Squats', 'Lunges', 'Pull-ups'];
+  const [items, setItems] = useState([]);
   const [workout, setWorkout] = useState([]);
   const [savedWorkouts, setSavedWorkouts] = useState([]);
   const [editingWorkoutIndex, setEditingWorkoutIndex] = useState(-1);
+
+  useEffect(() => {
+    fetch('http://localhost:8000/ejercicios')
+      .then(response => response.json())
+      .then(data => {
+        setItems(data);
+      })
+      .catch(error => console.error('Error:', error));
+    }, []);
 
   useEffect(() => {
     if (editingWorkoutIndex !== -1) {
@@ -63,7 +72,7 @@ const DailyWorkout = () => {
         <CardBody>
           <h1 className="mb-4">Selección de ejercicios para entrenamiento diario</h1>
           <br></br>
-          <DailyWorkoutForm availableExercises={availableExercises} onSubmit={handleAddExercise} />
+          <DailyWorkoutForm availableExercises={items} onSubmit={handleAddExercise} />
         </CardBody>
       </Card>
   

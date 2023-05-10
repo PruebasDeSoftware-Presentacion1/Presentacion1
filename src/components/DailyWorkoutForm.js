@@ -37,14 +37,16 @@ const DailyWorkoutForm = ({ availableExercises, onSubmit }) => {
   <h4>Ejercicios</h4>
   </label>
   <Row xs="1" sm="2" md="4" className="g-2">
+ 
   {availableExercises.map((exerciseItem) => (
     <Col className="mb-1" key={exerciseItem} xs="12" sm="6" md="2">
       <Card
-        onClick={() => handleCardClick(exerciseItem)}
+        
+        onClick={() => handleCardClick(exerciseItem[1])}
         className={exerciseItem === selectedExercise ? "selected" : ""}
       >
         <CardBody>
-          <CardTitle tag="h5">{exerciseItem}</CardTitle>
+          <CardTitle tag="h5">{exerciseItem[1]}</CardTitle>
         </CardBody>
       </Card>
     </Col>

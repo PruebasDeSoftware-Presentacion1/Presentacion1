@@ -1,8 +1,21 @@
 from fastapi import FastAPI
 from config.connection_mysql import mydb
 from typing import Dict
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",  # Permitir solicitudes de este origen
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 #GENERAR UN SUPUESTO QUE MAXIMO SE PUEDEN AGREGAR 3 EJERCICIOS AL ENTRENAMIENTO DIARIO
 @app.get("/ejercicios")
 async def root():
