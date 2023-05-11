@@ -112,6 +112,6 @@ async def root(data: Dict):
         cursor1.execute("INSERT INTO ejercicios_dia (id_ed) values ({})".format(id_generado))
         mydb.commit() 
     cursor1.close()
-    mydb.close()
+    # mydb.close()
 
     return "ok"
