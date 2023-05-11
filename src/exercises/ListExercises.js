@@ -9,9 +9,8 @@ function List({ items }) {
             <Col key={index} className="mb-3">
               <Card className="h-100">
                 <CardBody>
-                  <CardTitle tag="h2">{item.title}</CardTitle>
-                  <CardSubtitle tag="h3">{item.subtitle}</CardSubtitle>
-                  <CardText>{item.description}</CardText>
+                  <CardTitle tag="h2">{item[1]}</CardTitle>  
+                  <CardText>{item[2]}</CardText>  
                 </CardBody>
               </Card>
             </Col>

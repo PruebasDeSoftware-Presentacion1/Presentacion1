@@ -1,58 +1,23 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {ListPlans, CardModal} from '../exercises/ListPlans';
 
-const items_2 = [
-  {
-    title: 'Manzana',
-    description: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    title: 'Banana',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-  },
-  {
-    title: 'Naranja',
-    description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    title: 'Pera',
-    description: 'Incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.'
-  },
-  {
-    title: 'Piña',
-    description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-  },
-  {
-    title: 'Melón',
-    description: 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-  },
-  {
-    title: 'Fresa',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-  },
-  {
-    title: 'Ciruela',
-    description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'
-  }
-];
-
-const items = [
-  {
-    title: 'Plan Liviano',
-    description: 'Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-  },
-  {
-    title: 'Plan Medio',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-  },
-  {
-    title: 'Plan Avanzado',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-  }
-];
+const fetchPlans = async() =>{
+  const response = await fetch('http://localhost:8000/planes')
+  const data = await response.json();
+  return data;
+}
 
 const CustomPlans = () => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [plans, setPlans] = useState({});
+
+  useEffect(()=>{
+    const loadData = async () =>{
+      const data = await fetchPlans();
+      setPlans(data);
+    };
+    loadData();
+  },[]);
 
   const handleCardClick = (item) => {
     setSelectedItem(item);
@@ -61,18 +26,19 @@ const CustomPlans = () => {
   const toggleModal = () => {
     setSelectedItem(null);
   };
-return (
-  <div className="exercise-container">
-    <br></br>
-    <h2 className="exercise-title">Planes Personalizados</h2>
-      <ListPlans items={items} onCardClick={handleCardClick} />
-      <CardModal
-        items={items_2}
-        selectedItem={selectedItem}
-        toggleModal={toggleModal}
-      />
-  </div>
-);
+  const plansArray = Object.entries(plans).map(([planId, exercises])=> ({planId, exercises}));
+  
+  return (
+    <div className="exercise-container">
+      <br></br>
+      <h2 className="exercise-title">Planes Personalizados</h2>
+        <ListPlans items={plansArray} onCardClick={handleCardClick} />
+        <CardModal
+          selectedItem={selectedItem}
+          toggleModal={toggleModal}
+        />
+    </div>
+  );
 };
 
 export default CustomPlans;

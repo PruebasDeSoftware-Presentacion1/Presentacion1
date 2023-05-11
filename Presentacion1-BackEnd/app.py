@@ -1,8 +1,21 @@
 from fastapi import FastAPI
 from config.connection_mysql import mydb
 from typing import Dict
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",  # Permitir solicitudes de este origen
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 #GENERAR UN SUPUESTO QUE MAXIMO SE PUEDEN AGREGAR 3 EJERCICIOS AL ENTRENAMIENTO DIARIO
 @app.get("/ejercicios")
 async def root():
@@ -82,7 +95,7 @@ async def root(data: Dict):
         cursor1 = mydb.cursor()
         e1 = data["e1"]
         e2 = data["e2"]
-        cursor1.execute("INSERT INTO detalle_dia (e1) values ({}, {})".format(e1, e2))
+        cursor1.execute("INSERT INTO detalle_dia (e1,e2) values ({}, {})".format(e1, e2))
         id_generado = cursor1.lastrowid
         cursor1.execute("INSERT INTO ejercicios_dia (id_ed) values ({})".format(id_generado))
         #print(id_generado)
