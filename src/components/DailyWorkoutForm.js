@@ -9,25 +9,31 @@ const DailyWorkoutForm = ({ availableExercises, onSubmit }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [selectedExercise, setSelectedExercise] = useState(null);
   
-  const handleCardClick = (exercise) => {
-    setSelectedExercise(exercise);
-    setExercise(exercise);
-  };
+  const handleCardClick = (id, exerciseName) => {
+    const selectedExercise = { id, exercise: exerciseName, repetitions: 1 };
+    setSelectedExercise(id);
+    setExercise(selectedExercise);
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  
-    if (repetitions < 0) {
+
+const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (repetitions < 0) {
       setErrorMessage('Las repeticiones deben ser un número mayor a cero.');
       return;
-    }
-  
-    onSubmit({ exercise, repetitions });
-    setExercise('');
-    setSelectedExercise(null); // Deseleccionar el ejercicio actual
-    setRepetitions(1);
-    setErrorMessage('');
-  };
+  }
+
+  const finalExercise = { ...exercise, repetitions };
+
+  onSubmit(finalExercise);
+
+  setExercise('');
+  setSelectedExercise(null); // Deseleccionar el ejercicio actual
+  setRepetitions(1);
+  setErrorMessage('');
+};
+
   
 
   return (
@@ -42,7 +48,7 @@ const DailyWorkoutForm = ({ availableExercises, onSubmit }) => {
     <Col className="mb-1" key={exerciseItem} xs="12" sm="6" md="2">
       <Card
         
-        onClick={() => handleCardClick(exerciseItem[1])}
+        onClick={() => handleCardClick(exerciseItem[0],exerciseItem[1])}
         className={exerciseItem === selectedExercise ? "selected" : ""}
       >
         <CardBody>

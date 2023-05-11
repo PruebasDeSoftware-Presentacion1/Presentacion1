@@ -95,7 +95,7 @@ async def root(data: Dict):
         cursor1 = mydb.cursor()
         e1 = data["e1"]
         e2 = data["e2"]
-        cursor1.execute("INSERT INTO detalle_dia (e1) values ({}, {})".format(e1, e2))
+        cursor1.execute("INSERT INTO detalle_dia (e1,e2) values ({}, {})".format(e1, e2))
         id_generado = cursor1.lastrowid
         cursor1.execute("INSERT INTO ejercicios_dia (id_ed) values ({})".format(id_generado))
         #print(id_generado)

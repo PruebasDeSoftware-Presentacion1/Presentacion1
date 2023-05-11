@@ -35,7 +35,9 @@ const DailyWorkout = () => {
   };
 
   const handleChangeRepetitions = (index, newRepetitions) => {
+    
     const newWorkout = workout.map((exercise, i) => {
+
       if (i === index) {
         return { ...exercise, repetitions: newRepetitions };
       }
@@ -56,7 +58,30 @@ const DailyWorkout = () => {
       setEditingWorkoutIndex(-1);
     }
     setWorkout([]);
-  };
+
+
+
+    let data = {};
+
+    workout.forEach((exercise, index) => {
+      data[`e${index + 1}`] = exercise.id; 
+    });
+    console.log(data)
+    fetch('http://localhost:8000/agregar_entrenamiento', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+};
 
   const handleDeleteSavedWorkoutWrapper = (index) => {
     const newSavedWorkouts = handleDeleteSavedWorkout(savedWorkouts, index);
@@ -80,6 +105,7 @@ const DailyWorkout = () => {
   <CardBody>
     <h2 className="mb-3">Editar Entrenamiento</h2>
     <br></br>
+
     <Row className="g-2">
       {workout.map((exercise, index) => (
         <Col key={index} xs="12" sm="6" md="2">
@@ -142,6 +168,7 @@ const DailyWorkout = () => {
       <button onClick={handleSaveWorkout} className="btn btn-success mb-4">
         {editingWorkoutIndex === -1 ? 'Guardar Entrenamiento Diario' : 'Guardar Cambios'}
       </button>
+
     )}
   </CardBody>
 </Card>
