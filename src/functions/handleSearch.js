@@ -1,6 +1,6 @@
 function handleSearch(searchTerm, items) {
   const newFilteredItems = searchTerm.trim() === '' ? items : items.filter((item) =>
-      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+      item[1].toLowerCase().includes(searchTerm.toLowerCase())
   );
   return newFilteredItems;
 }

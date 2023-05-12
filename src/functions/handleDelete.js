@@ -3,12 +3,12 @@
 //     setSavedWorkouts(newSavedWorkouts);
 //   }
 
-export function handleDeleteSavedWorkout (savedWorkouts, index){
+function handleDeleteSavedWorkout (savedWorkouts, index){
     const newSavedWorkouts = savedWorkouts.filter((_, i) => i !== index);
     return newSavedWorkouts;
   };
   
-
+module.exports = { handleDeleteSavedWorkout };
   
   
 
