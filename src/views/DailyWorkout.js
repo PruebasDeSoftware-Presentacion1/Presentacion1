@@ -110,7 +110,7 @@ const DailyWorkout = () => {
 
           <Row className="g-2">
             {workout.map((exercise, index) => (
-              <Col key={index} xs="12" sm="6" md="2">
+              <Col key={index} xs="12" sm="6" md="3">
                 <Card className="exercise-card mb-3" style={{ minHeight: '150px' }}>
                   <CardBody className="exercise-card-body d-flex flex-column justify-content-between">
                     <div className="exercise-title-container d-flex align-items-center justify-content-center">
