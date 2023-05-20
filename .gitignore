@@ -6,3 +6,5 @@ yarn-error.log*
 /build
 /dist
 node_modules
+/Presentacion1-BackEnd/venv
+
