@@ -36,7 +36,7 @@
 #### 6. Iniciar FastApi (por defecto localhost:8000):
     $ uvicorn app:app
     
-# Ejecución JASMINE en Windows:
+# Ejecución y permisos de aplicación en Windows:
 #### 1. Verificar Restricción: Abrir Windows PowerShell como administrador, y escribir comando:
     $ Get-ExecutionPolicy
 #### 1.1 Si aparece "Restrict", cambiar a estado RemoteSigned:
